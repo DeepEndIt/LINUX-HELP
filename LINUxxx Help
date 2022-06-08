@@ -1,4 +1,4 @@
-## Example how to network interfaces in linux ##
+## Example how to network interfaces in linux/UBUNTU/KALI ##
 sudo vim /etc/network/interfaces
 
 ## Example what is found in the interface file ##
@@ -10,3 +10,61 @@ gateway 192.168.20.1
 
 ## Example how to restart network services properly ##
 sudo systemctl restart network.services
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+## Example how to network interfaces in CENTos7 ##
+sudo vim  /etc/sysconfig/network-scripts/ifcg-eth0
+
+## Example what is found in the interface file ##
+TYPE=Ethernet
+BOOTPROTO=none
+IPADDR=192.168.20.xx
+PREFIX=24
+GATEWAY=192.168.2.254
+NAME=eth0
+ONBOOT=yes
+
+## Example how to restart network services ##
+sudo systemctl restart network
+
+## Example how to forward your traffic for routing ##
+sudo vim /etc/sysctl.conf
+
+## Example what should be in the sysctl.conf file to forward traffic ##
+net.ipv4.ip_forward = 1
+
+## Example how to restart the forwarding of traffic ##
+sudo sysctl -P
+
+## Example how to flush your IPtables to allow traffic ##
+sudo iptables -nvL
+sudo iptables -P INPUT accept
+sudo iptables -P FORWARD accept
+sudo iptables -P OUTPUT accept
+sudo iptables -F
+sudo iptables -nvL
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+## Example how to add a samba server on to an Ubuntu Server along with making it persistant ##
+sudo apt install samba -y
+sudo systemctl start smbd
+sudo systemctl status smbd
+sudo systemctl enable smbd
+
+## Example how to start a cron job service##
+crontab -e
+
+## Example what a cron job input would look like ##
+*/5 * * * * sudo ip a show ens## >> /root/if-status
+
+## Example how to restart the cron job after the input ##
+sudo systemctl restart cron
+
+## Check to see if your cron job is working ##
+ls /root/ | grep if-status
+cat /root/if-status
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
+
