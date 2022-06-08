@@ -1,2 +1,12 @@
-## Edit network interfaces in linux ##
+## Example how to network interfaces in linux ##
 sudo vim /etc/network/interfaces
+
+## Example what is found in the interface file ##
+auto eth1
+iface eth1 inet static
+address 192.168.20.10
+netmask 255.255.255.0
+gateway 192.168.20.1
+
+## Example how to restart network services properly ##
+sudo systemctl restart network.services
