@@ -1,0 +1,2 @@
+## Edit network interfaces in linux ##
+sudo vim /etc/network/interfaces
