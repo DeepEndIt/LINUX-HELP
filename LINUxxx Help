@@ -76,4 +76,61 @@ cat /root/if-status
 
 -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ WINDOWs /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+## Be sure to run cmd.exe as Administrator, right click ##
+
+## Example how to create a directory (EXAMPLE) in a file system ##
+cd C:\Windows\Temp
+mkdir EXAMPLE
+dir
+## dir is just like ls, but for windows ##
+
+## Example how to add a new user (W30) to the file system and also adding a password (P@$$W0RD) ##
+net user W30 P@$$W0RD /add
+
+## Example how to check if your user was added ##
+net user
+
+## Example how to add the user W30 to a Administrator group ##
+net localgroup administrators W30 /add
+
+## Example how to check your user is in the group ##
+net localgroup administrator
+
+## Example how to make sure user (W30) has full control and permission to EXAMPLE folder ##
+icacls "C:\Windows\Temp\Example" /grant W30:(OI)(CI) /T
+or
+icacls "C:\Windows\Temp\Example" /INHERITANCE:e /grant:r W30:(F) /T /C
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ Windows GUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+## Example how to share folder in Windows ##
+File Explorer > This PC > C: > Windows > Temp > EXAMPLE
+Right Click folder > Properties > Sharing > Share > Advanced Sharing > Check "Share this folder"  > select everything
+Check in CMD with 
+  net share
+  
+/-/-/-/-/-//-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ Kali Share /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+
+## Example how to make a directory to share your Windows folder to ##
+cd ~/Desktop
+mkdir windows
+
+## Example how to mount your EXAMPLE file to the windows folder ##
+sudo mount -t cifs -o username=W30 //192.168.xx.xx/EXAMPLE ~/Desktop/Windows
+or
+sudo mount.cifs //192.168.xx.xx/EXAMPLE ~/Desktop/Windows -o user=W30
+
+cd ~/Desktop/Windows/
+
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ MetaSploit /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+/-/-/-/-/-/-/-/-/-/-/-//-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/--/-/-/
+
+
 
