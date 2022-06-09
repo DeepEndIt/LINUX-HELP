@@ -132,5 +132,45 @@ cd ~/Desktop/Windows/
 -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ MetaSploit /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 /-/-/-/-/-/-/-/-/-/-/-//-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/--/-/-/
 
+## Example how to start up a type script ##
+cd /root/
+script Metasploit
+
+## Example how to use Nmap on networks ##
+nmap 192.168.10.xx/24
+nmap -sV 192.168.10.xx
+
+## Example how to start a postgresql database ##
+sudo systemctl start postgresql
+sudo systemctl status postgresql
+msfdb init
+
+## Example how to start the metasploi console and checking the postgresql database ##
+msfconsole
+db_status
+
+## Example how to search for exploit ##
+search type:exploit platform:windows smb
+search type:exploit platform:windows browser
+search type:exploit platform:windows psexec
+
+## Running metaploit ##
+use ##
+options
+set .....
+exploit
+
+## Example how to have the Meterpreter reverse tcp shell connect back ##
+search type:post meterpreter
+(find post exploit meterpreter shell)
+use ###
+set session ### (previous session)
+set LPORT (to specific port)
+
+session #
+
+## Example how to background##
+background
+
 
 
